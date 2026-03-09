@@ -42,7 +42,7 @@ export class ProfilesService {
 
   update(id: string, updateProfileDto: UpdateProfileDto) {
     const matchingProfile = this.profiles.find(
-      (existingProfile) => existingProfile.id === id
+      (existingProfile) => existingProfile.id === id,
     );
 
     if (!matchingProfile) {
@@ -53,5 +53,15 @@ export class ProfilesService {
     matchingProfile.description = updateProfileDto.description;
 
     return matchingProfile;
+  }
+
+  remove(id: string): void {
+    const matchingProfileIndex = this.profiles.findIndex(
+      (profile) => profile.id === id,
+    );
+
+    if (matchingProfileIndex > -1) {
+      this.profiles.splice(matchingProfileIndex, 1);
+    }
   }
 }
