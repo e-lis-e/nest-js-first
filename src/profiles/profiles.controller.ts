@@ -33,13 +33,11 @@ export class ProfilesController {
   create(@Body() createProfileDto: CreateProfileDto) {
     return this.profilesService.create(createProfileDto);
   }
+
   // PUT /profiles/:id
   @Put(':id')
   update(@Param('id') id: string, @Body() updateProfileDto: UpdateProfileDto) {
-    return {
-      id,
-      updateProfileDto,
-    };
+    return this.profilesService.update(id, updateProfileDto);
   }
 
   // DELETE /profiles/:id
